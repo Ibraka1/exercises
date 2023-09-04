@@ -5,12 +5,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class Library {
+public class LibraryApps_MethodCreation {
+    static Scanner scan = new Scanner(System.in);
+    static List<String> booksName = new ArrayList<>();
 
         public static void main(String[] args) {
-            Scanner scan = new Scanner(System.in);
-            boolean isAgain =true;
-            List<String> booksName = new ArrayList<>();
+            Scanner input = new Scanner(System.in);
+            boolean isAgain = true;
             booksName.add("Kızıl Veba");
             booksName.add("Satranç");
             booksName.add("Fahrenheit 451");
@@ -24,37 +25,38 @@ public class Library {
                 System.out.println("3 : Kitap Sıralama");
                 System.out.println("4 : Bütün Kitapları Silme");
                 System.out.println("5 : Çıkış yapma ");
+                int userChoice = input.nextInt();
 
-                int userChoise = scan.nextInt();
-                switch (userChoise) {
+                switch (userChoice) {
                     case 1:
-                        System.out.println("Lütfen eklemek istediğiniz kitabin adını giriniz :" );
-                        booksName.add(scan.nextLine());
+                        System.out.println("Lütfen eklemek istediğiniz kitabin adını giriniz :");
+                        String adds =scan.nextLine();
+                        booksName.add(adds);
                         System.out.println(booksName);
                         break;
-                    case 2 :
+                    case 2:
                         System.out.println("Lütfen silmek istediğiniz kitabin adını giriniz :");
                         booksName.remove(scan.nextLine());
                         System.out.println(booksName);
                         break;
-                    case 3 :
+                    case 3:
                         System.out.println("Kitaplar Sıralanıyor...");
                         Collections.sort(booksName);
                         System.out.println(booksName);
                         break;
-                    case 4 :
+                    case 4:
                         System.out.println("Tüm kitaplar siliniyor...");
                         booksName.clear();
+                        System.out.println(booksName);
                         break;
-                    case 5 :
+                    case 5:
                         System.out.println("Çıkış Yapılıyor...\nİyi Günler Dileriz");
                         isAgain = false;
                         break;
                     default:
                         System.out.println("Lütfen geçerli bir işlem giriniz...");
-                        isAgain=true;
+                        isAgain = true;
                 }
-
-            }while (isAgain);
-    }
+            } while (isAgain);
+        }
 }
