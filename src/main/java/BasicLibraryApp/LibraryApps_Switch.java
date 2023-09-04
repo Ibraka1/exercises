@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class LibraryApps_MethodCreation {
+public class LibraryApps_Switch {
     static Scanner scan = new Scanner(System.in);
     static List<String> booksName = new ArrayList<>();
 

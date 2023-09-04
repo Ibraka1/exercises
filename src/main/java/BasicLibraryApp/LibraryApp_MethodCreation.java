@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class LibraryApp_Switch {
+public class LibraryApp_MethodCreation {
     static Scanner input = new Scanner(System.in);
     static ArrayList<String> books = new ArrayList<>();
 
@@ -54,8 +54,8 @@ public class LibraryApp_Switch {
  }
  public static void removeBooks (){
      System.out.println("Lütfen silmek istediğiniz kitabın ismini giriniz :");
-     String remove = input.nextLine();
-     books.remove(remove);
+     String removeBook = input.nextLine();
+     books.remove(removeBook);
      System.out.println(books);
  }
  public static void list () {
