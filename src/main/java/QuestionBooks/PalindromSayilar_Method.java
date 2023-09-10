@@ -1,6 +1,6 @@
 package QuestionBooks;
 
-public class PalindromSayilar {
+public class PalindromSayilar_Method {
 
     static boolean isPalindrom(int input) {
         int temp, reverseNum = 0, kalan;

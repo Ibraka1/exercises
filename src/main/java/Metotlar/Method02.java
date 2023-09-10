@@ -1,6 +1,6 @@
 package Metotlar;
 
-public class Metot02 {
+public class Method02 {
     /*
     void methodlar ve return methodlar
      */

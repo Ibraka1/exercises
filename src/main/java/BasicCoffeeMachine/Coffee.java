@@ -1,4 +1,4 @@
-package CoffeeMachine;
+package BasicCoffeeMachine;
 
 public class Coffee {
 
@@ -6,5 +6,9 @@ public class Coffee {
 
     public Coffee(String ad) {
         this.ad = ad;
+    }
+
+    public String getAd() {
+        return ad;
     }
 }
