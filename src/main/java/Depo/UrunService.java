@@ -30,17 +30,22 @@ public class UrunService{
         System.out.println("--------- ÜRÜN GİRİŞ SAYFASI ---------");
         System.out.println("Lütfen giriş yapmak istediğiniz ürünün id numarasını giriniz :");
         System.out.println("İşlem seçiniz : \n1:Ürünü Ekleme \n0:Çıkış");
-        String secim2 = inp.next();
-        System.out.println("Lütfen ürün ID giriniz :");
-        int id = inp.nextInt();
-        boolean idCheck= mapUrun.containsKey(id);
-        if (idCheck){
-            System.out.println("Lütfen ürün miktarı giriniz  : ");
-            int miktar =inp.nextInt();
-            int sumMiktar =mapUrun.get(id).getUrunMiktar();
-            mapUrun.get(id).setUrunMiktar(miktar+sumMiktar);
-        }else System.out.println("Girilen ID de ürün bulunmamaktadır !! ");
+        String secim = inp.next();
+        switch (secim){
+            case "1": System.out.println("Lütfen ürün ID giriniz :");
+                int id = inp.nextInt();
+                boolean idCheck= mapUrun.containsKey(id);
+                if (idCheck){
+                    System.out.println("Lütfen ürün miktarı giriniz  : ");
+                    int miktar =inp.nextInt();
+                    int sumMiktar =mapUrun.get(id).getUrunMiktar();
+                    mapUrun.get(id).setUrunMiktar(miktar+sumMiktar);
+                }else System.out.println("Girilen ID de ürün bulunmamaktadır !! ");
+                break;
+            case "0":
+                System.out.println("Menüye Yönlendiriliyor...");
         }
+    }
 
     public static void urunYazdirma (){
 

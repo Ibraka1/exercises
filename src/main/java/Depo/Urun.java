@@ -1,6 +1,7 @@
 package Depo;
 
 public class Urun {
+    //POJO
 
     //  List<String> urunIsmi =new ArrayList<>();
     //  List<Integer> urunId =new ArrayList<>();
