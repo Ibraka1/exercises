@@ -2,18 +2,18 @@ package Depo;
 
 import java.util.*;
 
-public class UrunService<InvalidAmountException> {
+public class UrunService{
     Urun obj1;
     static Scanner inp = new Scanner(System.in);
-    public static Map<Integer, Urun> urun = new HashMap<>();
+    public static  Map<Integer, Urun> mapUrun = new HashMap<>();
 
     public UrunService() {
         obj1 = new Urun();
     }
 
 
-    public void tanimlama() {
 
+    public void tanimlama() {
         System.out.println("Ürünün ismini giriniz :");
         String name = inp.nextLine();
         System.out.println("Ürün üreticisi giriniz :");
@@ -23,16 +23,31 @@ public class UrunService<InvalidAmountException> {
         int defaultMiktar=0;
         String defaultRaf="Yerleştirilmedi";
         Urun obj1 = new Urun(name, uretici, birim,defaultMiktar,defaultRaf);
-        urun.put(obj1.urunId, obj1);
+        mapUrun.put(obj1.urunId, obj1);
     }
 
+    public void urunGiris(){
+        System.out.println("--------- ÜRÜN GİRİŞ SAYFASI ---------");
+        System.out.println("Lütfen giriş yapmak istediğiniz ürünün id numarasını giriniz :");
+        System.out.println("İşlem seçiniz : \n1:Ürünü Ekleme \n0:Çıkış");
+        String secim2 = inp.next();
+        System.out.println("Lütfen ürün ID giriniz :");
+        int id = inp.nextInt();
+        boolean idCheck= mapUrun.containsKey(id);
+        if (idCheck){
+            System.out.println("Lütfen ürün miktarı giriniz  : ");
+            int miktar =inp.nextInt();
+            int sumMiktar =mapUrun.get(id).getUrunMiktar();
+            mapUrun.get(id).setUrunMiktar(miktar+sumMiktar);
+        }else System.out.println("Girilen ID de ürün bulunmamaktadır !! ");
+        }
 
-    public static void urunYazdirma() {
+    public static void urunYazdirma (){
 
         System.out.println("             ***** QA-03 DEPO ÜRÜNLERİ *****         ");
         System.out.printf("%-3s      %-10s      %-10s      %-3s     %-6s    %-3s \n", "Id", "Ürün Adı ", "Üretici Adı", "Ürün Birimi", "Ürün Miktarı", "Ürün Raf");
         System.out.println("--------------------------------------------------------------------------------------");
-        Collection<Urun> values = urun.values();
+        Collection<Urun> values = mapUrun.values();
         List<Urun> listele = new ArrayList<>();
         listele.addAll(values);
         for (Urun w : listele) {
@@ -41,29 +56,30 @@ public class UrunService<InvalidAmountException> {
         }
     }
 
-    public void urunGiris() {
-        System.out.println("--------- ÜRÜN GİRİŞ SAYFASI ---------");
-        System.out.println("Lütfen giriş yapmak istediğiniz ürünün id numarasını giriniz :");
-        System.out.println("İşlem seçiniz : \n1:Ürün rafa yerleştir \n2:Ürünü miktarı düzenle \n0:Çıkış");
-        String secim = inp.next();
-        int sum=0;
+    public void urunRafaKoy() {
 
-        switch (secim) {
+        System.out.println("--------- ÜRÜN RAF SAYFASI ---------");
+        System.out.println("Lütfen rafa yerleştirmek istediğiniz ürünün id numarasını giriniz :");
+        System.out.println("İşlem seçiniz : \n1:Ürün Rafa yerleştir \n2:Ürün Raftan çıkar  \n0:Çıkış");
+        String secim1 = inp.next();
+        switch (secim1) {
             case "1":
                 System.out.println("Lütfen ürün ID giriniz :");
                 int id = inp.nextInt();
-                if (urun.containsKey(id)){
-                    System.out.println("Lütfen raf kodu giriniz :");
-                    String raf=inp.next();
-                }else System.out.println("Girilen ID de ürün bulunmamaktadır !! ");
-
-
-
+                boolean idCheck = mapUrun.containsKey(id);
+                if (idCheck) {
+                    System.out.println("Lütfen Ürün Rafını giriniz  : \n(!Raf bilgisini boşluk olmadan giriniz!)");
+                    String raf = inp.next();
+                    mapUrun.get(id).setRaf(raf);
+                } else System.out.println("Girilen ID de ürün bulunmamaktadır !! ");
                 break;
-
-
+            case "2":
+                System.out.println("Lütfen ürün ID giriniz :");
+                int id1 = inp.nextInt();
+                boolean idCheck1 = mapUrun.containsKey(id1);
+                if (idCheck1) {
+                   mapUrun.get(id1).setRaf("Yerleştirilmedi");
+                } else System.out.println("Girilen ID de ürün bulunmamaktadır !! ");
         }
     }
-
-
 }

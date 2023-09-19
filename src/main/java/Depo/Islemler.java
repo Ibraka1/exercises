@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import static Depo.UrunService.urunYazdirma;
 
+
 public class Islemler {
     static UrunService obj1 =new UrunService();
     static Scanner scan =new Scanner(System.in);
@@ -22,6 +23,10 @@ public class Islemler {
                     break;
                 case 3 :
                     obj1.urunGiris();
+                    break;
+                case 4 :
+                    obj1.urunRafaKoy();
+                    break;
 
             }
         }while( true);
