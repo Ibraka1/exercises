@@ -85,6 +85,22 @@ public class UrunService{
                 if (idCheck1) {
                    mapUrun.get(id1).setRaf("Yerleştirilmedi");
                 } else System.out.println("Girilen ID de ürün bulunmamaktadır !! ");
-        }
+
+
+            }
+
+        }public void urunCikisi() {
+        Scanner input=new Scanner(System.in);
+        System.out.println("Lütfen çıkış yapmak istediğiniz urun ID giriniz");
+        int urunID=input.nextInt();
+        if (mapUrun.containsKey(urunID)){
+            System.out.println("Lütfen miktar giriniz");
+            int exit=input.nextInt();
+            int adet=mapUrun.get(urunID).getUrunMiktar();
+            if (exit>adet){
+                System.out.println("Depoda çıkış yapmak istediğiniz miktarda ürün yok.");
+                System.out.println("Çıkış yapmak istediğin üründen depoda  "+mapUrun.get(urunID).getUrunMiktar()+"  tane var");
+            }else mapUrun.get(urunID).setUrunMiktar(adet-exit);
+        }else System.out.println("Çıkış yapmak istediğiniz ürün listede yok");
     }
 }

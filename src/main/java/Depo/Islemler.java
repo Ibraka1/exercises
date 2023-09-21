@@ -27,7 +27,9 @@ public class Islemler {
                 case 4 :
                     obj1.urunRafaKoy();
                     break;
-
+                case 5 :
+                    obj1.urunCikisi();
+                    break;
             }
         }while( true);
 
