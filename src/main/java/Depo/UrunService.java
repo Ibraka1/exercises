@@ -5,6 +5,7 @@ import java.util.*;
 public class UrunService{
     Urun obj1;
     static Scanner inp = new Scanner(System.in);
+
     public static  Map<Integer, Urun> mapUrun = new HashMap<>();
 
     public UrunService() {
@@ -16,6 +17,7 @@ public class UrunService{
     public void tanimlama() {
         System.out.println("Ürünün ismini giriniz :");
         String name = inp.nextLine();
+        inp.next(); //dummy code
         System.out.println("Ürün üreticisi giriniz :");
         String uretici = inp.nextLine();
         System.out.println("Ürünün birimini giriniz : \n(Kg,Lt,mL,adet)");
