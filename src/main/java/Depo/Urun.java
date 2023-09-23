@@ -62,10 +62,11 @@ public class Urun {
     }
 
     public String getUrunBirimi() {
-        return urunBirimi.toLowerCase();
+      return urunBirimi.toLowerCase();
     }
 
     public void setUrunBirimi (String urunBirimi) {
+
         this.urunBirimi = urunBirimi.toLowerCase();
     }
 

@@ -13,7 +13,8 @@ public class Islemler {
         boolean isAgain=true;
         do{
             System.out.println("Lütfen yapmak istediğiniz işlemi seçiniz :");
-            System.out.println("1:Ürün Tanımlama \n2:Ürün Listele \n3:Ürün Girişi \n4:Ürün Rafa Yerleştir \n5:Ürün Çıkart \n0:Çıkış Yap");
+            System.out.println("1:Ürün Tanımlama \n2:Ürün Listele \n3:Ürün Girişi \n4:Ürün Rafa Yerleştir" +
+                    " \n5:Ürün Çıkart \n0:Çıkış Yap");
             int choise =scan.nextInt();
             switch (choise) {
                 case 1:
@@ -32,7 +33,7 @@ public class Islemler {
                     obj1.urunCikisi();
                     break;
                 case 0 :
-                    System.out.println("Çıkış yapılıyor \n İyi Günler Dileriz ");
+                    System.out.println("Çıkış yapılıyor \nİyi Günler Dileriz ");
                     isAgain = false;
             }
         }while(isAgain);

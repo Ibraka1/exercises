@@ -1,32 +1,51 @@
 package Depo;
 
+import javax.swing.*;
 import java.util.*;
 
 public class UrunService{
     Urun obj1;
     static Scanner inp = new Scanner(System.in);
 
+    static Scanner stringScanner = new Scanner(System.in);
+
     public static  Map<Integer, Urun> mapUrun = new HashMap<>();
+
+
+
 
     public UrunService() {
         obj1 = new Urun();
+       Urun s1 = new Urun("Örisim","ÖrMarka","Örbirim",0,"Örraf");
+       mapUrun.put(s1.urunId, s1);
     }
+
 
 
 
     public void tanimlama() {
         System.out.println("Ürünün ismini giriniz :");
-        String name = inp.nextLine();
-        inp.next(); //dummy code
+        String name = stringScanner.nextLine();
         System.out.println("Ürün üreticisi giriniz :");
-        String uretici = inp.nextLine();
-        System.out.println("Ürünün birimini giriniz : \n(Kg,Lt,mL,adet)");
-        String birim = inp.nextLine();
-        int defaultMiktar=0;
-        String defaultRaf="Yerleştirilmedi";
-        Urun obj1 = new Urun(name, uretici, birim,defaultMiktar,defaultRaf);
-        mapUrun.put(obj1.urunId, obj1);
+        String uretici = stringScanner.nextLine();
+        System.out.println("Ürünün birimini giriniz : \n(Kg,Lt,Koli,Adet,Çuval)");
+        String birim = stringScanner.nextLine();
+        Collection<Urun>degerler=mapUrun.values();
+        List<Urun> listeElemanlari = new ArrayList<>();
+        listeElemanlari.addAll(degerler);
+        boolean isTrue=true;
+        for (Urun w : listeElemanlari) {
+            isTrue=(w.getUrunIsmi().equalsIgnoreCase(name)&&w.getUretici().equalsIgnoreCase(uretici)&&w.getUrunBirimi().equalsIgnoreCase(birim));
+        }
+       if (!isTrue){
+           int defaultMiktar = 0;
+           String defaultRaf = "Yerleştirilmedi";
+           Urun obj1 = new Urun(name, uretici, birim, defaultMiktar, defaultRaf);
+           mapUrun.put(obj1.urunId, obj1);
+       }else System.out.println("!! Girilen ürün zaten mevcuttur \nÜrün bilgilerini menüden güncelleyebilirsiniz");
+       mapUrun.remove(100);
     }
+
 
     public void urunGiris(){
         System.out.println("--------- ÜRÜN GİRİŞ SAYFASI ---------");
@@ -53,7 +72,7 @@ public class UrunService{
 
     public static void urunYazdirma (){
 
-        System.out.println("             ***** QA-03 DEPO ÜRÜNLERİ *****         ");
+        System.out.println("                       ***** QA-03 DEPO ÜRÜNLERİ *****                    ");
         System.out.printf("%-3s      %-10s      %-10s      %-3s     %-5s    %-3s \n", "Id", "Ürün Adı ", "Üretici Adı", "Ürün Birimi", "Ürün Miktarı", "Ürün Raf");
         System.out.println("--------------------------------------------------------------------------------------");
         Collection<Urun> values = mapUrun.values();
@@ -68,7 +87,6 @@ public class UrunService{
     public void urunRafaYerlestir() {
 
         System.out.println("--------- ÜRÜN RAF SAYFASI ---------");
-        System.out.println("Lütfen rafa yerleştirmek istediğiniz ürünün id numarasını giriniz :");
         System.out.println("İşlem seçiniz : \n1:Ürün Rafa yerleştir \n2:Ürün Raftan çıkar  \n0:Çıkış");
         String secim1 = inp.next();
         switch (secim1) {
@@ -112,7 +130,8 @@ public class UrunService{
                     int adet=mapUrun.get(urunID).getUrunMiktar();
                     if (exit>adet){
                         System.out.println("Depoda çıkış yapmak istediğiniz miktarda ürün yok.");
-                        System.out.println("Çıkış yapmak istediğin üründen depoda  "+mapUrun.get(urunID).getUrunMiktar()+"  tane var");
+                        System.out.println("Çıkış yapmak istediğiniz üründen depoda  "+mapUrun.get(urunID).getUrunMiktar()+" "+
+                                mapUrun.get(urunID).getUrunBirimi()+" var");
                     }else mapUrun.get(urunID).setUrunMiktar(adet-exit);
                 }else System.out.println("Çıkış yapmak istediğiniz ürün listede yok");
                 break;
