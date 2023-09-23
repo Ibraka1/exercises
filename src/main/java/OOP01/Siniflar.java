@@ -1,4 +1,4 @@
-package OOP;
+package OOP01;
 
 public class Siniflar {
     public static void main(String[] args) {

@@ -18,7 +18,7 @@ public class UrunService{
         String name = inp.nextLine();
         System.out.println("Ürün üreticisi giriniz :");
         String uretici = inp.nextLine();
-        System.out.println("Ürünün birimini giriniz : \n(Kg,Lt,mL)");
+        System.out.println("Ürünün birimini giriniz : \n(Kg,Lt,mL,adet)");
         String birim = inp.nextLine();
         int defaultMiktar=0;
         String defaultRaf="Yerleştirilmedi";
@@ -28,7 +28,6 @@ public class UrunService{
 
     public void urunGiris(){
         System.out.println("--------- ÜRÜN GİRİŞ SAYFASI ---------");
-        System.out.println("Lütfen giriş yapmak istediğiniz ürünün id numarasını giriniz :");
         System.out.println("İşlem seçiniz : \n1:Ürünü Ekleme \n0:Çıkış");
         String secim = inp.next();
         switch (secim){
@@ -44,13 +43,16 @@ public class UrunService{
                 break;
             case "0":
                 System.out.println("Menüye Yönlendiriliyor...");
+                break;
+            default:    System.out.println("Yanlış seçim yaptınız lütfen tekrar deneyiniz ");
+            urunGiris();
         }
     }
 
     public static void urunYazdirma (){
 
         System.out.println("             ***** QA-03 DEPO ÜRÜNLERİ *****         ");
-        System.out.printf("%-3s      %-10s      %-10s      %-3s     %-6s    %-3s \n", "Id", "Ürün Adı ", "Üretici Adı", "Ürün Birimi", "Ürün Miktarı", "Ürün Raf");
+        System.out.printf("%-3s      %-10s      %-10s      %-3s     %-5s    %-3s \n", "Id", "Ürün Adı ", "Üretici Adı", "Ürün Birimi", "Ürün Miktarı", "Ürün Raf");
         System.out.println("--------------------------------------------------------------------------------------");
         Collection<Urun> values = mapUrun.values();
         List<Urun> listele = new ArrayList<>();
@@ -61,7 +63,7 @@ public class UrunService{
         }
     }
 
-    public void urunRafaKoy() {
+    public void urunRafaYerlestir() {
 
         System.out.println("--------- ÜRÜN RAF SAYFASI ---------");
         System.out.println("Lütfen rafa yerleştirmek istediğiniz ürünün id numarasını giriniz :");
@@ -85,22 +87,41 @@ public class UrunService{
                 if (idCheck1) {
                    mapUrun.get(id1).setRaf("Yerleştirilmedi");
                 } else System.out.println("Girilen ID de ürün bulunmamaktadır !! ");
-
-
+                break;
+            case "0":
+                System.out.println("Ana menüye yönlendiriliyor...");
+                break;
+            default:
+                System.out.println("Yanlış seçim yaptınız lütfen tekrar deneyiniz ");
+                urunRafaYerlestir();
             }
 
         }public void urunCikisi() {
-        Scanner input=new Scanner(System.in);
-        System.out.println("Lütfen çıkış yapmak istediğiniz urun ID giriniz");
-        int urunID=input.nextInt();
-        if (mapUrun.containsKey(urunID)){
-            System.out.println("Lütfen miktar giriniz");
-            int exit=input.nextInt();
-            int adet=mapUrun.get(urunID).getUrunMiktar();
-            if (exit>adet){
-                System.out.println("Depoda çıkış yapmak istediğiniz miktarda ürün yok.");
-                System.out.println("Çıkış yapmak istediğin üründen depoda  "+mapUrun.get(urunID).getUrunMiktar()+"  tane var");
-            }else mapUrun.get(urunID).setUrunMiktar(adet-exit);
-        }else System.out.println("Çıkış yapmak istediğiniz ürün listede yok");
+        System.out.println("--------- ÜRÜN ÇIKIŞ SAYFASI ---------");
+        System.out.println("İşlem seçiniz : \n1:Ürünü Çıkartma \n0:Çıkış");
+        String secim2=inp.next();
+        switch (secim2){
+            case "1":
+                System.out.println("Lütfen çıkış yapmak istediğiniz urun ID giriniz");
+                int urunID=inp.nextInt();
+                if (mapUrun.containsKey(urunID)){
+                    System.out.println("Lütfen miktar giriniz");
+                    int exit=inp.nextInt();
+                    int adet=mapUrun.get(urunID).getUrunMiktar();
+                    if (exit>adet){
+                        System.out.println("Depoda çıkış yapmak istediğiniz miktarda ürün yok.");
+                        System.out.println("Çıkış yapmak istediğin üründen depoda  "+mapUrun.get(urunID).getUrunMiktar()+"  tane var");
+                    }else mapUrun.get(urunID).setUrunMiktar(adet-exit);
+                }else System.out.println("Çıkış yapmak istediğiniz ürün listede yok");
+                break;
+            case "0":
+                break;
+            default:
+                System.out.println("Yanlış seçim yaptınız lütfen tekrar deneyiniz ");
+                urunCikisi();
+        }
+
+
+
     }
 }

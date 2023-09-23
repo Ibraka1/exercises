@@ -65,7 +65,7 @@ public class Urun {
         return urunBirimi.toLowerCase();
     }
 
-    public void setUrunBirimi(String urunBirimi) {
+    public void setUrunBirimi (String urunBirimi) {
         this.urunBirimi = urunBirimi.toLowerCase();
     }
 
@@ -74,15 +74,19 @@ public class Urun {
     }
 
     public void setUrunMiktar(int urunMiktar) {
-        this.urunMiktar = urunMiktar;
+        if (urunMiktar<0){
+            System.out.println("Ürün miktarı negatif olamaz");
+        }else {
+            this.urunMiktar = urunMiktar;
+        }
     }
 
     public String getRaf() {
-        return raf.toLowerCase();
+        return raf.toUpperCase();
     }
 
     public void setRaf(String raf) {
-        this.raf = raf.toLowerCase();
+        this.raf = raf.toUpperCase();
     }
 
 

@@ -1,4 +1,4 @@
-package OOP;
+package OOP01;
 
 public class HesapMakinesi {
     public int sayi1;
